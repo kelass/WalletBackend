@@ -1,11 +1,11 @@
 # WalletBackend
 Tasks:
--Create models
--Create db (postgres)
--Create repositories
--Create managers
--Add some endpoints for managers
+<li>Create models</li>
+<li>Create db (postgres)</li>
+<li>Create repositories</li>
+<li>Create managers</li>
+<li>Add some endpoints for managers</li>
 
--Daily points  (use quartz or azureFunc)
+<li>Daily points  (use quartz or azureFunc)</li>
 
 
