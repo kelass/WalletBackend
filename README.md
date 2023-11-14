@@ -6,9 +6,6 @@ Tasks:
 <li>Create managers</li>
 <li>Add some endpoints for managers</li>
 <li>Authentication authorization</li>
-<li>Logic count for daily points (QUARTZ)</li>
-
-
-<li>Daily points  (use quartz or azureFunc)</li>
+<li>Logic count for daily points (QUARTZ or AzureFunc)</li>
 
 
