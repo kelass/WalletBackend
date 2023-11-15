@@ -6,5 +6,9 @@ namespace WalletBackend.Repositories.Implementations
 {
     public class TransactionRepository:Repository<AuthorizeTransaction, ApplicationDbContext>, ITransactionRepository
     {
+        public TransactionRepository(ApplicationDbContext context):base(context)
+        {
+            
+        }
     }
 }

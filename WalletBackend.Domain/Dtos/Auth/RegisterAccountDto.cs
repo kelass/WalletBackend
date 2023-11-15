@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WalletBackend.Domain.Dtos
+namespace WalletBackend.Domain.Dtos.Auth
 {
     public class RegisterAccountDto
     {

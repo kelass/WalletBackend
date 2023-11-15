@@ -36,11 +36,15 @@ namespace WalletBackend.API.Extensions
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<IBillRepository, BillRepository>();
+            services.AddScoped<IUserBillRepository, UserBillRepository>();
             return services;
         }
         public static IServiceCollection AddManagers(this IServiceCollection services)
         {
             services.AddScoped<ITransactionManager,TransactionManager>();
+            services.AddScoped<IBillManager, BillManager>();
+            services.AddScoped<IUserBillManager, UserBillManager>();
             return services;
         }
     }

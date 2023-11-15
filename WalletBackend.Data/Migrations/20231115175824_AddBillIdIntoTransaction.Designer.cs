@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WalletBackend.Data;
@@ -11,9 +12,11 @@ using WalletBackend.Data;
 namespace WalletBackend.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231115175824_AddBillIdIntoTransaction")]
+    partial class AddBillIdIntoTransaction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,22 +158,6 @@ namespace WalletBackend.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserBills");
-                });
-
-            modelBuilder.Entity("WalletBackend.Data.Models.DailyPoint", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("DailyPoints");
                 });
 
             modelBuilder.Entity("WalletBackend.Data.Models.Identity.WalletRole", b =>
@@ -365,15 +352,6 @@ namespace WalletBackend.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("WalletBackend.Data.Models.Identity.WalletUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("WalletBackend.Data.Models.DailyPoint", b =>
-                {
                     b.HasOne("WalletBackend.Data.Models.Identity.WalletUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")

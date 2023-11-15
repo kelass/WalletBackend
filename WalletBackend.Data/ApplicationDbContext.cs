@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WalletBackend.Data.Configurations.Bills;
+using WalletBackend.Data.Configurations.DailyPoints;
 using WalletBackend.Data.Configurations.Transactions;
+using WalletBackend.Data.Models;
 using WalletBackend.Data.Models.Bills;
 using WalletBackend.Data.Models.Identity;
 using WalletBackend.Domain.Models.Transactions;
@@ -19,6 +21,7 @@ namespace WalletBackend.Data
         public DbSet<AuthorizeTransaction> AuthorizeTransactions { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<UserBills> UserBills { get; set; }
+        public DbSet<DailyPoint> DailyPoints { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -26,6 +29,7 @@ namespace WalletBackend.Data
             builder.ApplyConfiguration(new AuthorizeTranscationConfiguration());
             builder.ApplyConfiguration(new BillsConfiguration());
             builder.ApplyConfiguration(new UserBillsConfiguration());
+            builder.ApplyConfiguration(new DailyPointConfiguration());
         }
     }
 }

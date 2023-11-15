@@ -9,7 +9,10 @@ namespace WalletBackend.Repositories.Implementations
         where TContext : DbContext
     {
         protected readonly TContext _context;
-
+        public Repository(TContext context)
+        {
+            _context = context;
+        }
         public async Task<int> AddAsync(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);
@@ -28,9 +31,6 @@ namespace WalletBackend.Repositories.Implementations
 
         public IQueryable<TEntity> GetAll()
         => _context.Set<TEntity>().AsNoTracking();
-
-        public async Task<TEntity> GetById(Guid id)
-        => await _context.Set<TEntity>().FirstAsync(e=>e.Id == id);
 
         public async Task<int> UpdateAsync(TEntity entity)
         {

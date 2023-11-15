@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WalletBackend.Data.Models.Identity;
-using WalletBackend.Domain.Dtos;
+using WalletBackend.Domain.Dtos.Auth;
 
 namespace WalletBackend.API.Controllers
 {
@@ -20,6 +20,12 @@ namespace WalletBackend.API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> Register([FromBody] RegisterAccountDto model)
         {
+            var managedUser = await _userManager.FindByEmailAsync(model.Email);
+            if (managedUser !=null)
+            {
+                return BadRequest("User already exist");
+            }
+
             if (ModelState.IsValid)
             {
                 var user = new WalletUser { UserName = model.Email, Email = model.Email };
@@ -27,15 +33,33 @@ namespace WalletBackend.API.Controllers
 
                 if (result.Succeeded)
                 {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return Ok("Registration successful");
-                }
-                else
-                {
-                    return BadRequest(result.Errors);
                 }
             }
 
             return BadRequest(ModelState);
         }
+
+        [HttpPost("login")]
+        public async Task<ActionResult> Login([FromBody] LoginAccountDto model)
+        {
+            var managedUser = await _userManager.FindByEmailAsync(model.Email);
+            if (managedUser == null)
+            {
+                return BadRequest("User does not exist");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+                if (result.Succeeded)
+                    return Ok("signed in");
+            }
+
+            return BadRequest(ModelState);
+        }
+        
+
     }
 }
