@@ -2,6 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using WalletBackend.Data;
 using WalletBackend.Data.Models.Identity;
+using WalletBackend.Repositories.Implementations;
+using WalletBackend.Repositories.Interfaces;
+using WalletBackend.Services.Implementations;
+using WalletBackend.Services.Interfaces;
 
 namespace WalletBackend.API.Extensions
 {
@@ -26,6 +30,17 @@ namespace WalletBackend.API.Extensions
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
+            return services;
+        }
+
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
+            return services;
+        }
+        public static IServiceCollection AddManagers(this IServiceCollection services)
+        {
+            services.AddScoped<ITransactionManager,TransactionManager>();
             return services;
         }
     }

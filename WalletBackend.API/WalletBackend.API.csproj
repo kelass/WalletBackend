@@ -20,6 +20,7 @@
     <ProjectReference Include="..\WalletBackend.Data\WalletBackend.Data.csproj" />
     <ProjectReference Include="..\WalletBackend.DLL\WalletBackend.Services.csproj" />
     <ProjectReference Include="..\WalletBackend.Domain\WalletBackend.Domain.csproj" />
+    <ProjectReference Include="..\WalletBackend.Repositories\WalletBackend.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,7 +12,7 @@ using WalletBackend.Data;
 namespace WalletBackend.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231114163217_InitialMigration")]
+    [Migration("20231115095001_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -128,6 +128,42 @@ namespace WalletBackend.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("WalletBackend.Data.Models.Bills.Bill", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Draft")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bills");
+                });
+
+            modelBuilder.Entity("WalletBackend.Data.Models.Bills.UserBills", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("BillId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BillId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserBills");
+                });
+
             modelBuilder.Entity("WalletBackend.Data.Models.Identity.WalletRole", b =>
                 {
                     b.Property<Guid>("Id")
@@ -220,7 +256,7 @@ namespace WalletBackend.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("WalletBackend.Domain.Models.Transactions.BaseTransaction", b =>
+            modelBuilder.Entity("WalletBackend.Domain.Models.Transactions.AuthorizeTransaction", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -236,10 +272,6 @@ namespace WalletBackend.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -250,23 +282,14 @@ namespace WalletBackend.Data.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("Transactions");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("BaseTransaction");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("WalletBackend.Domain.Models.Transactions.AuthorizeTransaction", b =>
-                {
-                    b.HasBaseType("WalletBackend.Domain.Models.Transactions.BaseTransaction");
-
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
-                    b.HasDiscriminator().HasValue("AuthorizeTransaction");
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AuthorizeTransactions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -317,6 +340,30 @@ namespace WalletBackend.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WalletBackend.Data.Models.Bills.UserBills", b =>
+                {
+                    b.HasOne("WalletBackend.Data.Models.Bills.Bill", null)
+                        .WithMany()
+                        .HasForeignKey("BillId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WalletBackend.Data.Models.Identity.WalletUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WalletBackend.Domain.Models.Transactions.AuthorizeTransaction", b =>
+                {
+                    b.HasOne("WalletBackend.Data.Models.Identity.WalletUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

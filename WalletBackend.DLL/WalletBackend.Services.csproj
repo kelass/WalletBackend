@@ -7,12 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Implementations\" />
-    <Folder Include="Interfaces\" />
+    <PackageReference Include="Quartz.AspNetCore" Version="3.7.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Quartz.AspNetCore" Version="3.7.0" />
+    <ProjectReference Include="..\WalletBackend.Repositories\WalletBackend.Repositories.csproj" />
   </ItemGroup>
 
 </Project>
