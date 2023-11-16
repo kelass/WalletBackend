@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using WalletBackend.Data.Models;
 using WalletBackend.Data.Models.Identity;
+using WalletBackend.Data.Models.DailyPoints;
 
 namespace WalletBackend.Data.Configurations.DailyPoints
 {

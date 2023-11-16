@@ -38,6 +38,7 @@ namespace WalletBackend.API.Extensions
             services.AddScoped<ITransactionRepository, TransactionRepository>();
             services.AddScoped<IBillRepository, BillRepository>();
             services.AddScoped<IUserBillRepository, UserBillRepository>();
+            services.AddScoped<IDailyPointRepository, DailyPointRepository>();
             return services;
         }
         public static IServiceCollection AddManagers(this IServiceCollection services)
@@ -45,6 +46,7 @@ namespace WalletBackend.API.Extensions
             services.AddScoped<ITransactionManager,TransactionManager>();
             services.AddScoped<IBillManager, BillManager>();
             services.AddScoped<IUserBillManager, UserBillManager>();
+            services.AddScoped<IDailyPointManager, DailyPointManager>();
             return services;
         }
     }

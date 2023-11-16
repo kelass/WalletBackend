@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using WalletBackend.Data.Configurations.Bills;
 using WalletBackend.Data.Configurations.DailyPoints;
 using WalletBackend.Data.Configurations.Transactions;
-using WalletBackend.Data.Models;
 using WalletBackend.Data.Models.Bills;
+using WalletBackend.Data.Models.DailyPoints;
 using WalletBackend.Data.Models.Identity;
 using WalletBackend.Domain.Models.Transactions;
 
