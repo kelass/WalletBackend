@@ -7,7 +7,6 @@ namespace WalletBackend.Repositories.Interfaces
         IQueryable<TEntity> GetAll();
         Task<int> AddAsync(TEntity entity);
         Task<int> UpdateAsync(TEntity entity);
-        Task<TEntity> GetById(Guid id);
         Task<int> DeleteAsync(Guid id);
         Task<bool> ExistAsync(Guid id);
     }

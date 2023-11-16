@@ -2,6 +2,5 @@
 {
     public class Bill : BaseEntity
     {
-        public string Draft { get; set; }
     }
 }

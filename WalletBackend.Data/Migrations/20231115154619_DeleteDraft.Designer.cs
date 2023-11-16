@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WalletBackend.Data;
@@ -11,9 +12,11 @@ using WalletBackend.Data;
 namespace WalletBackend.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231115154619_DeleteDraft")]
+    partial class DeleteDraft
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,28 +160,6 @@ namespace WalletBackend.Data.Migrations
                     b.ToTable("UserBills");
                 });
 
-            modelBuilder.Entity("WalletBackend.Data.Models.DailyPoints.DailyPoint", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("numeric");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("DailyPoints");
-                });
-
             modelBuilder.Entity("WalletBackend.Data.Models.Identity.WalletRole", b =>
                 {
                     b.Property<Guid>("Id")
@@ -280,9 +261,6 @@ namespace WalletBackend.Data.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("numeric");
 
-                    b.Property<Guid>("BillId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -304,8 +282,6 @@ namespace WalletBackend.Data.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BillId");
 
                     b.HasIndex("UserId");
 
@@ -378,23 +354,8 @@ namespace WalletBackend.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WalletBackend.Data.Models.DailyPoints.DailyPoint", b =>
-                {
-                    b.HasOne("WalletBackend.Data.Models.Identity.WalletUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("WalletBackend.Domain.Models.Transactions.AuthorizeTransaction", b =>
                 {
-                    b.HasOne("WalletBackend.Data.Models.Bills.Bill", null)
-                        .WithMany()
-                        .HasForeignKey("BillId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("WalletBackend.Data.Models.Identity.WalletUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
