@@ -16,6 +16,11 @@ namespace WalletBackend.API.Controllers
             _dailyPointManager = dailyPointManager;
         }
 
+        /// <summary>
+        /// Get points by user id 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<string> GetPoints(Guid userId)
         {

@@ -20,6 +20,10 @@ namespace WalletBackend.API.Controllers
             _userBillManager = userBillManager;
         }
 
+        /// <summary>
+        /// Create bill using user id
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [HttpPost]
         public async Task<bool> CreateBill()
@@ -35,6 +39,11 @@ namespace WalletBackend.API.Controllers
             return false;
         }
 
+        /// <summary>
+        /// Bind user to bill using user id
+        /// </summary>
+        /// <param name="billId"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost("bind-user-bill")]
         public async Task<bool> BindUserToBill([FromBody] Guid billId)
