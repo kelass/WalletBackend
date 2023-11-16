@@ -34,7 +34,7 @@
 JSON:
 [
   {
-    "type": 0,
+    "type": 1,
     "amount": 333,
     "name": "string",
     "description": "string",
@@ -50,7 +50,7 @@ JSON:
     "name": "string",
     "description": "string",
     "createdDate": "2023-11-16T11:28:36.071Z",
-    "status": 0,
+    "status": 1,
     "billId": "b765237b-f0dc-433c-b1a4-e6a6ad7ebbe8",
     "userId": "a73c3e82-8f4e-401c-abd4-0ba650ba9bcd",
     "id": "d998d523-6fb9-4d93-be0a-84bb2ef2c089"
@@ -83,7 +83,7 @@ JSON:
     "name": "string",
     "description": "string",
     "createdDate": "2023-11-16T11:28:36.071Z",
-    "status": 0,
+    "status": 1,
     "billId": "b765237b-f0dc-433c-b1a4-e6a6ad7ebbe8",
     "userId": "a73c3e82-8f4e-401c-abd4-0ba650ba9bcd",
     "id": "9bcd11d8-a35b-4ceb-8efa-04547f63e983"
