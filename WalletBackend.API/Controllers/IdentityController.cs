@@ -20,6 +20,11 @@ namespace WalletBackend.API.Controllers
             _dailyPointManager = dailyPointManager;
         }
 
+        /// <summary>
+        /// Register user using AspNetCore.Identity
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost("register")]
         public async Task<ActionResult> Register([FromBody] RegisterAccountDto model)
         {
@@ -45,6 +50,11 @@ namespace WalletBackend.API.Controllers
             return BadRequest(ModelState);
         }
 
+        /// <summary>
+        /// Login user using AspNetCore.Identity
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost("login")]
         public async Task<ActionResult> Login([FromBody] LoginAccountDto model)
         {

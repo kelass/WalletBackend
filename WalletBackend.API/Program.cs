@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using WalletBackend.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,17 @@ builder.Services.AddSchedule();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c=>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Prysukha Mykola - Wallet app"
+    });
+
+    string filePath = Path.Combine(AppContext.BaseDirectory, "WalletBackend.API.xml");
+    c.IncludeXmlComments(filePath);
+});
 
 var app = builder.Build();
 

@@ -25,6 +25,11 @@ namespace WalletBackend.API.Controllers
             _userBillManager = userBillManager;
         }
 
+        /// <summary>
+        /// Get last 10 transaction using bill id
+        /// </summary>
+        /// <param name="billId"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpGet("get-transactions")]
         public async Task<IEnumerable<AuthorizeTransaction>> GetAuthorizeTransaction([FromQuery] Guid billId)
@@ -36,6 +41,11 @@ namespace WalletBackend.API.Controllers
             return Enumerable.Empty<AuthorizeTransaction>();
         }
 
+        /// <summary>
+        /// Create transaction using AuthorizeTransactionDto 
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost("create-transaction")]
         public async Task<int> CreateTransaction(AuthorizeTransactionDto dto)
