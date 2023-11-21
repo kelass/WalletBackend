@@ -95,4 +95,5 @@ JSON:
 <h1 align="center">Daily points</h1>
 Every day dailing points to users using Quartz
 
-![image](https://github.com/kelass/WalletBackend/assets/69418373/84aa997c-f843-4f1a-9517-d691e8b15b3a)
+![image](https://github.com/kelass/WalletBackend/assets/69418373/4880fd07-4ee7-465e-9671-04409bf7ec24)
+
